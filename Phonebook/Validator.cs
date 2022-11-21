@@ -22,7 +22,11 @@ namespace Phonebook
 
         public static bool IsValidPhoneNumber(string? input) => !input.IsNullOrEmpty() && input.Length > 0 && input.Length <= 30 && input.All(c => char.IsDigit(c));
 
-        public static bool IsNameInContacts(ContactContext db, string name) => db.Contacts.Any(c => c.Name == name);
+        public static bool IsNameInContacts(string name)
+        {
+            using var db = new ContactContext();
+            return db.Contacts.Any(c => c.Name == name);
+        }
 
         internal static bool IsValidUpdateOption(string? input) => input == "n" || input == "p";
     }

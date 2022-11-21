@@ -16,6 +16,7 @@ namespace Phonebook
                 Console.Write("\nThis is not a valid input. Please enter one of the above options: ");
                 input = Console.ReadLine();
             }
+            Console.Clear();
             return input;
         }
 

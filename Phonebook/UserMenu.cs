@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ConsoleTableExt;
+using Phonebook.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,19 @@ namespace Phonebook
         {
             Console.WriteLine("Your Contacts\r");
             Console.WriteLine("-------------\n");
+        }
+
+        internal static void ViewContacts(List<Contact> contacts)
+        {
+            var tableData = new List<List<object>>();
+            foreach (Contact contact in contacts)
+            {
+                tableData.Add(new List<object>
+                {   contact.Name,
+                    contact.PhoneNumber
+                });
+            }
+            ConsoleTableBuilder.From(tableData).WithTitle("Your Contacts").WithColumn("Name", "Phone Number").ExportAndWriteLine();
         }
     }
 }
